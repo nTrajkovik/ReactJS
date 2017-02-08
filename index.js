@@ -33,19 +33,19 @@ import './index.css';
 //     </p>
 //   );
 // }
+/*
+ReactDOM.render(
+  // <App />,
+  // element,
+  <div>
+    <Input label="First Name :" type="text" id="firstName"/>
+    <Input label="Email :" type="email" id="email" />
+  </div>
+  ,
+  document.getElementById('root')
+);
 
-// ReactDOM.render(
-//   // <App />,
-//   // element,
-//   <div>
-//     <Input label="First Name :" type="text" id="firstName"/>
-//     <Input label="Email :" type="email" id="email" />
-//   </div>
-//   ,
-//   document.getElementById('root')
-// );
-
-//stateful component
+stateful component
 class Timer extends React.Component {
   render() {
     return (
@@ -76,8 +76,51 @@ class App extends React.Component {
     );
   };
 }
+*/
+// ReactDOM.render(
+//   <App startValue="100"/>,
+//   document.getElementById('root')
+// );
+
+let books = [
+  {
+    title: "Game of Balls",
+    author: "Putin"
+  },
+  {
+    title: "Dawn of ceramics",
+    author: "J.K. Rowling"
+  },
+  {
+    title: "Moonwalk",
+    author: "Michael Jackson"
+  }
+];
+class Book extends React.Component {
+  render() {
+    return (
+      <li>{this.props.title} -- {this.props.author}</li>
+    );
+  }
+}
+class BookList extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {booksList: this.props.booksList}
+  }
+
+  render() {
+    return (
+      <ul>
+        {this.state.booksList.map((book, i) => {
+          return <Book onClick={this.clickHandler} key={i} title={book.title} author={book.author}/>
+        })}
+      </ul>
+    );
+  }
+}
 
 ReactDOM.render(
-  <App startValue="100"/>,
+  <BookList booksList={books}/>,
   document.getElementById('root')
 );
